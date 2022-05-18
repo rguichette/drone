@@ -53,6 +53,14 @@ gsap.to(model.scale, {
 
 })
 
+gsap.to(model.position, {
+    delay: 1,
+    duration: 1,
+    x: .35,
+    y: .3
+})
+ 
+
 scene.add(model)
 })
 
@@ -66,7 +74,17 @@ camera.rotation.z = 1;
 const renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animation );
+renderer.setClearColor(0x272727, 1)
+
 document.body.appendChild( renderer.domElement );
+
+
+//window resize
+window.addEventListener('resize', ()=>{
+    camera.aspect = window.innerWidth /window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
 
 // animation
 
